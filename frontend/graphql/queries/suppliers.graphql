@@ -1,0 +1,15 @@
+query suppliers($location: LocationInput!) {
+  suppliers(location: $location) {
+    id
+    name
+    location {
+      id
+      city
+      street
+      postalCode
+      country
+      lat
+      lng
+    }
+  }
+}

@@ -1,0 +1,66 @@
+parameters:
+	db:
+		dsn: 'mysql:host=db;port=3306;dbname=skillshare'
+		username: 'root'
+		password: 'root'
+
+database:
+	dsn: %db.dsn%
+	user: %db.username%
+	password: %db.password%
+	options:
+		lazy: yes
+
+search:
+    graphqlTypes:
+        in: %appDir%/GraphQL/Type
+        classes:
+            - App\GraphQL\Type\*
+    graphqlQueries:
+        in: %appDir%/GraphQL/Query
+        classes:
+            - App\GraphQL\Query\*
+    graphqlMutations:
+        in: %appDir%/GraphQL/Mutation
+        classes:
+            - App\GraphQL\Mutation\*
+    mappers:
+        in: %appDir%/../vendor/vis/backend/src/Mapper
+        classes:
+            - SkillShare\Mapper\*            
+    repositories:
+        in: %appDir%/../vendor/vis/backend/src/Repository
+        classes:
+            - SkillShare\Repository\*  
+    queryObjects:
+        in: %appDir%/../vendor/vis/backend/src/QueryObject
+        classes:
+            - SkillShare\QueryObject\*  
+    services:
+        in: %appDir%/../vendor/vis/backend/src/Service
+        classes:
+            - SkillShare\Service\*              
+          
+services:
+    - Tracy\Logger(%appDir%/../log)
+    - App\GraphQL\TypeRegistry
+
+    proxyStorage:
+        factory: Nette\Caching\Storages\FileStorage(%appDir%/../temp)
+        autowired: false
+
+    offerMapper: SkillShare\Mapper\OfferMapper
+    reviewMapper: SkillShare\Mapper\ReviewMapper
+    categoryMapper: SkillShare\Mapper\CategoryMapper
+    userMapper: SkillShare\Mapper\UserMapper
+    supplierMapper: SkillShare\Mapper\SupplierMapper
+    projectMapper: SkillShare\Mapper\ProjectMapper
+
+    proxyCategoryMapper: SkillShare\Mapper\File\FileBasedProxyMapper(realMapper: @categoryMapper, fileStorage: @proxyStorage)
+
+    offerRepository: SkillShare\Repository\OfferRepository(offerMapper: @offerMapper)
+    reviewRepository: SkillShare\Repository\ReviewRepository(reviewMapper: @reviewMapper)
+    categoryRepository: SkillShare\Repository\CategoryRepository(categoryMapper: @proxyCategoryMapper)
+    userRepository: SkillShare\Repository\UserRepository(userMapper: @userMapper)
+    supplierRepository: SkillShare\Repository\SupplierRepository(supplierMapper: @supplierMapper)
+    projectRepository: SkillShare\Repository\ProjectRepository(projectMapper: @projectMapper)  

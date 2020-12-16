@@ -1,0 +1,15 @@
+query supplier($id: Int!) {
+  supplier(id: $id) {
+    id
+    name
+    location {
+      id
+      city
+      street
+      postalCode
+      country
+      lat
+      lng
+    }
+  }
+}

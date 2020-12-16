@@ -1,0 +1,11 @@
+.vscode
+.idea
+.next
+.prettierrc
+.prettierignore
+.gitignore
+.dockerignore
+Dockerfile
+package-lock.json
+yarn.lock
+public

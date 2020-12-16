@@ -1,0 +1,7 @@
+mutation addOffer($price: Int!, $projectId: Int!, $completionDate: DateTime!) {
+  addOffer(
+    price: $price
+    projectId: $projectId
+    completionDate: $completionDate
+  )
+}

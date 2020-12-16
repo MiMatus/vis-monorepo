@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  graphql:
+    build:
+      context: "./graphql/"
+      dockerfile: "./Dockerfile"
+    ports:
+      - "9000:80"
+    volumes:
+      - "./graphql:/var/www/html"
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - "./dbdata:/var/lib/mysql"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  console:
+    build:
+      context: "./console/"
+      dockerfile: "./Dockerfile"
+    volumes:
+      - "./console:/app"

@@ -1,0 +1,41 @@
+query project($id: Int!) {
+  project(id: $id) {
+    id
+    name
+    description
+    allowedArea
+    location {
+      id
+      city
+      street
+      postalCode
+      country
+      lat
+      lng
+    }
+    category {
+      id
+      name
+      description
+    }
+    acceptedOffer {
+      id
+      projectId
+      price
+      completionDate
+    }
+    offers {
+      id
+      projectId
+      price
+      completionDate
+    }
+    expectedPrice
+    reviews {
+      id
+      positive
+      userId
+      content
+    }
+  }
+}

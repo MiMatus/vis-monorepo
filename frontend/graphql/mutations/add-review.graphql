@@ -1,0 +1,3 @@
+mutation addReview($positive: Boolean!, $projectId: Int!, $content: String!) {
+  addReview(positive: $positive, projectId: $projectId, content: $content)
+}

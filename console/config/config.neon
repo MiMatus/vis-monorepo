@@ -1,0 +1,37 @@
+parameters:
+	db:
+		dsn: 'mysql:host=db;port=3306;dbname=skillshare'
+		username: 'root'
+		password: 'root'
+
+database:
+	dsn: %db.dsn%
+	user: %db.username%
+	password: %db.password%
+	options:
+		lazy: yes
+
+search:
+    commands:
+        in: %appDir%/Command
+        classes:
+            - App\Command\*  
+    mappers:
+        in: %appDir%/../vendor/vis/backend/src/Mapper
+        classes:
+            - SkillShare\Mapper\*            
+    repositories:
+        in: %appDir%/../vendor/vis/backend/src/Repository
+        classes:
+            - SkillShare\Repository\*  
+    queryObjects:
+        in: %appDir%/../vendor/vis/backend/src/QueryObject
+        classes:
+            - SkillShare\QueryObject\*  
+    services:
+        in: %appDir%/../vendor/vis/backend/src/Service
+        classes:
+            - SkillShare\Service\*              
+          
+services:
+    - Tracy\Logger(%appDir%/../log)

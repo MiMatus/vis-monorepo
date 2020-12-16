@@ -1,0 +1,40 @@
+{
+    "name": "vis/console",
+    "description": "VIS - Semestral project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michal Matus",
+            "email": "mat0370@vsb.cz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    },      
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/MiMatus/vis-backend"
+        }
+    ],         
+	"require": {
+		"php": ">= 7.4",
+		"nette/database": "^3.0",
+		"nette/di": "^3.0",
+		"nette/bootstrap": "^3.0",
+        "tracy/tracy": "^2.7",
+        "vis/backend": "*",
+        "symfony/config": "^4.4",
+        "symfony/console": "^4.4",
+        "symfony/dependency-injection": "^4.4",
+        "symfony/yaml": "^4.4"        
+	},
+	"require-dev": {
+		"phpstan/phpstan": "^0.12",
+		"phpstan/phpstan-nette": "^0.12",
+		"nette/tester": "^2.3"
+    },
+    "prefer-stable": true,
+	"minimum-stability": "dev"
+}

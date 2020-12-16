@@ -1,0 +1,37 @@
+query user {
+  user {
+    id
+    email
+    projects {
+      id
+      name
+      description
+      allowedArea
+      location {
+        id
+        city
+        street
+        postalCode
+        country
+        lat
+        lng
+      }
+      category {
+        id
+        name
+        description
+      }
+      offers {
+        id
+        projectId
+        price
+        completionDate
+      }
+      expectedPrice
+      reviews {
+        id
+        positive
+      }
+    }
+  }
+}

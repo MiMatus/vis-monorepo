@@ -1,0 +1,22 @@
+overwrite: true
+schema: "http://localhost:9000"
+documents: "graphql/**/*.graphql"
+generates:
+  graphql/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+      - "named-operations-object"
+      - "fragment-matcher"
+    config:
+      withHooks: true
+      withHOC: false
+      withComponent: false
+      apolloClientVersion: 3
+      apolloReactHooksImportFrom: "@apollo/client"
+      apolloReactCommonImportFrom: "@apollo/client"
+
+hooks:
+  afterOneFileWrite:
+    - prettier --write
